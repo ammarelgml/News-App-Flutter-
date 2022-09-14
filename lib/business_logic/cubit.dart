@@ -1,14 +1,12 @@
-import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:news_app/cubit/states.dart';
 import 'package:news_app/network/local/cache_helper.dart';
 import 'package:news_app/network/remote/dio_helper.dart';
-
-import 'package:news_app/screens/news/news_screen.dart';
-import 'package:news_app/screens/person/person_screen.dart';
-import 'package:news_app/screens/search/search_screen.dart';
+import 'package:news_app/presentation/news/news_screen.dart';
+import 'package:news_app/presentation/person/person_screen.dart';
+import 'package:news_app/presentation/search/search_screen.dart';
+import 'states.dart';
 
 class NewsCubit extends Cubit<NewsStates> {
   NewsCubit() : super(AppInitialState());
@@ -17,7 +15,7 @@ class NewsCubit extends Cubit<NewsStates> {
 
   bool isDark = false;
 
-  void changeMode({bool fromShared}) {
+  void changeMode({bool? fromShared}) {
     if (fromShared != null) {
       isDark = fromShared;
       emit(AppChangeModeState());

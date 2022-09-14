@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:news_app/cubit/cubit.dart';
+
+import 'package:news_app/business_logic/cubit.dart';
 
 class CustomTextField extends StatelessWidget {
-  CustomTextField({
-    @required this.searchController,
-    @required this.onChanged,
-  });
+  CustomTextField({required this.searchController, required this.onChanged});
 
   final TextEditingController searchController;
   final Function onChanged;
@@ -34,15 +32,17 @@ class CustomTextField extends StatelessWidget {
       ),
       child: TextFormField(
         controller: searchController,
-        validator: (String value) {
-          if (value.isEmpty) return 'Value is empty';
+        validator: (value) {
+          if (value == null || value.isEmpty) return 'Value is empty';
           return null;
         },
         keyboardType: TextInputType.text,
         style: TextStyle(
           color: NewsCubit.get(context).isDark ? Colors.white : Colors.black,
         ),
-        onChanged: onChanged,
+        onChanged: (value) {
+          onChanged(value);
+        },
         decoration: InputDecoration(
           hintText: 'Search',
           hintStyle: TextStyle(color: Colors.grey),

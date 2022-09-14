@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
+
 import 'article_item.dart';
 
 class NewsBuilder extends StatelessWidget {
-  const NewsBuilder({
-    @required this.articles,
-  });
+  const NewsBuilder({required this.articles});
 
   final List articles;
 

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:news_app/screens/webview/webview_screen.dart';
 
-import '../constants.dart';
+import '../../constants/constants.dart';
+import '../webview/webview_screen.dart';
 
 class ArticleItem extends StatelessWidget {
-  ArticleItem({@required this.article, @required this.context});
+  ArticleItem({required this.article, required this.context});
 
   final Map article;
   final BuildContext context;

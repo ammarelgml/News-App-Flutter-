@@ -2,16 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'cubit/cubit.dart';
-import 'cubit/states.dart';
+import 'business_logic/cubit.dart';
+import 'business_logic/states.dart';
 import 'network/remote/dio_helper.dart';
 import 'network/local/cache_helper.dart';
-import 'screens/home_screen.dart';
-
-import 'constants.dart';
+import 'presentation/home_screen.dart';
+import 'constants/constants.dart';
 
 void main() async {
-  // Make sure that the app will not open before the await done
   WidgetsFlutterBinding.ensureInitialized();
 
   DioHelper.init();
@@ -42,7 +40,6 @@ class MyApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             theme: ThemeData(
               appBarTheme: AppBarTheme(
-                backwardsCompatibility: false,
                 systemOverlayStyle: SystemUiOverlayStyle(
                   statusBarColor: ThemeData().scaffoldBackgroundColor,
                   statusBarIconBrightness: Brightness.dark,
@@ -84,7 +81,6 @@ class MyApp extends StatelessWidget {
             darkTheme: ThemeData(
               scaffoldBackgroundColor: Color(0xFF333739),
               appBarTheme: AppBarTheme(
-                backwardsCompatibility: false,
                 systemOverlayStyle: SystemUiOverlayStyle(
                   statusBarColor: Color(0xFF333739),
                   statusBarIconBrightness: Brightness.light,
