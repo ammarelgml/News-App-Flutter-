@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 
-import '../../constants/constants.dart';
+import '../../domain/models/article.dart';
+import '../theme/app_colors.dart';
 import '../webview/webview_screen.dart';
 
 class ArticleItem extends StatelessWidget {
   ArticleItem({required this.article, required this.context});
 
-  final Map article;
+  final Article article;
   final BuildContext context;
 
   @override
@@ -16,7 +17,7 @@ class ArticleItem extends StatelessWidget {
         Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (context) => WebViewScreen(url: article['url'])));
+                builder: (context) => WebViewScreen(url: article.url)));
       },
       child: Padding(
         padding: EdgeInsets.all(16.0),
@@ -34,16 +35,16 @@ class ArticleItem extends StatelessWidget {
                   children: [
                     Expanded(
                       child: Text(
-                        '${article['title']}',
-                        style: Theme.of(context).textTheme.bodyText1,
+                        '${article.title}',
+                        style: Theme.of(context).textTheme.labelLarge,
                         maxLines: 3,
                         overflow: TextOverflow.ellipsis,
                       ),
                     ),
                     SizedBox(height: 10),
                     Text(
-                      '${article['publishedAt']}',
-                      style: TextStyle(fontSize: 14, color: kDarkGray),
+                      '${article.publishedAt}',
+                      style: TextStyle(fontSize: 14, color: AppColors.darkGray),
                     ),
                   ],
                 ),
@@ -56,14 +57,14 @@ class ArticleItem extends StatelessWidget {
   }
 
   getImage() {
-    if (article['urlToImage'] != null) {
+    if (article.urlToImage != null) {
       return Container(
         width: 120,
         height: 120,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
           image: DecorationImage(
-            image: NetworkImage('${article['urlToImage']}'),
+            image: NetworkImage('${article.urlToImage}'),
             fit: BoxFit.cover,
           ),
         ),
@@ -77,9 +78,8 @@ class ArticleItem extends StatelessWidget {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
             image: DecorationImage(
-              image: AssetImage('images/blue-warning.png'),
-              fit: BoxFit.cover,
-            ),
+                image: AssetImage('images/blue-warning.png'),
+                fit: BoxFit.cover),
           ),
         ),
       );

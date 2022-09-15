@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:news_app/business_logic/cubit.dart';
-
 class CustomTextField extends StatelessWidget {
   CustomTextField({required this.searchController, required this.onChanged});
 
@@ -10,22 +8,14 @@ class CustomTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    InputBorder kInputBorder = OutlineInputBorder(
-      borderRadius: BorderRadius.circular(20),
-      borderSide: BorderSide(
-        color: NewsCubit.get(context).isDark ? Color(0xFF333739) : Colors.white,
-      ),
-    );
-
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
         boxShadow: [
           BoxShadow(
-            color:
-                NewsCubit.get(context).isDark ? Colors.black54 : Colors.black26,
+            color: Theme.of(context).colorScheme.surface,
             spreadRadius: 1,
-            offset: Offset(4.0, 3.0), //(x,y)
+            offset: Offset(4.0, 3.0),
             blurRadius: 3.0,
           ),
         ],
@@ -38,7 +28,7 @@ class CustomTextField extends StatelessWidget {
         },
         keyboardType: TextInputType.text,
         style: TextStyle(
-          color: NewsCubit.get(context).isDark ? Colors.white : Colors.black,
+          color: Theme.of(context).colorScheme.secondary,
         ),
         onChanged: (value) {
           onChanged(value);
@@ -46,22 +36,23 @@ class CustomTextField extends StatelessWidget {
         decoration: InputDecoration(
           hintText: 'Search',
           hintStyle: TextStyle(color: Colors.grey),
-          prefixIcon: Icon(
-            Icons.search,
-            color: Colors.grey,
-          ),
+          prefixIcon: Icon(Icons.search, color: Colors.grey),
           suffixIcon: searchController.text.length > 0
               ? IconButton(
                   onPressed: searchController.clear,
                   icon: Icon(Icons.clear, color: Colors.grey),
                 )
               : SizedBox(),
-          fillColor:
-              NewsCubit.get(context).isDark ? Color(0xFF333739) : Colors.white,
+          fillColor: Theme.of(context).colorScheme.background,
           filled: true,
-          enabledBorder: kInputBorder,
-          focusedBorder: kInputBorder,
-          border: kInputBorder,
+          enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(20),
+              borderSide:
+                  BorderSide(color: Theme.of(context).colorScheme.background)),
+          focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(20),
+              borderSide:
+                  BorderSide(color: Theme.of(context).colorScheme.background)),
         ),
       ),
     );

@@ -1,24 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:news_app/business_logic/cubit.dart';
-import 'package:news_app/business_logic/states.dart';
+import 'package:news_app/business_logic/global_cubit/global_cubit.dart';
+import 'package:news_app/business_logic/global_cubit/global_states.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<NewsCubit, NewsStates>(
+    return BlocConsumer<GlobalCubit, GlobalStates>(
         listener: (context, state) {},
         builder: (context, state) {
-          NewsCubit cubit = NewsCubit.get(context);
-
+          GlobalCubit cubit = GlobalCubit.get(context);
           return Scaffold(
-              appBar: AppBar(title: Text('News App'), actions: [
+              appBar: AppBar(title: Text('Latest News'), actions: [
                 IconButton(
                     icon: Icon(Icons.brightness_4_outlined, size: 28),
                     onPressed: () {
-                      NewsCubit.get(context).changeMode();
-                      print(' ${NewsCubit.get(context).isDark}');
+                      GlobalCubit.get(context).changeMode();
                     })
               ]),
               bottomNavigationBar: Padding(
